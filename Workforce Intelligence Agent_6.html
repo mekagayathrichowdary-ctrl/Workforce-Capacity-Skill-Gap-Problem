@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Workforce Intelligence Agent</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1f6;--card:#fff;--ink:#14213d;--mute:#5d6b86;--line:#dde3ee;--teal:#0f9d8a;--coral:#e4572e;--amber:#f2a900;--blue:#3a6ea5;--head:#14213d;--headtx:#fff;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1424;--card:#16203a;--ink:#e8edf8;--mute:#93a0bd;--line:#26335a;--head:#0a101f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1424;--card:#16203a;--ink:#e8edf8;--mute:#93a0bd;--line:#26335a;--head:#0a101f;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Manrope,system-ui,Segoe UI,sans-serif}
+header{background:var(--head);color:var(--headtx);padding:18px 24px 0}
+h1{margin:0;font-size:22px;font-weight:800}header p{margin:2px 0 14px;color:#9fb0d0;font-size:13px}
+nav{display:flex;gap:4px;overflow-x:auto}nav button{background:none;border:0;color:#9fb0d0;padding:10px 16px;font:600 13px Manrope,sans-serif;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+nav button.on{color:#fff;border-color:var(--teal)}nav button:focus-visible,.btn:focus-visible,.chip:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+main{padding:20px 24px;max-width:1200px;margin:auto}
+.grid{display:grid;gap:16px}.k4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}.c2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}
+.card h3{margin:0 0 4px;font-size:15px;font-weight:800}.sub{color:var(--mute);font-size:12px;margin:0 0 10px}
+.kpi b{display:block;font-size:30px;font-weight:800;line-height:1.1}.kpi span{color:var(--mute);font-size:12px}.kpi{border-left:4px solid var(--teal)}
+.kpi.r{border-color:var(--coral)}.kpi.a{border-color:var(--amber)}.kpi.b{border-color:var(--blue)}
+svg{width:100%;height:auto;display:block}.gl{stroke:var(--line)}.ax{fill:var(--mute);font-size:11px}
+.lg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--mute);margin-top:6px}.lg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:6px 8px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mute);font-weight:600;font-size:12px}
+td.h{text-align:center;font-weight:700;border-radius:6px;min-width:62px}
+.tag{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:700}.t-r{background:#e4572e22;color:var(--coral)}.t-g{background:#0f9d8a22;color:var(--teal)}.t-a{background:#f2a90033;color:#b57f00}
+.btn,.chip{font:600 12px Manrope,sans-serif;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 13px;cursor:pointer}.btn.p{background:var(--teal);border-color:var(--teal);color:#fff}.btn.on,.chip:hover{border-color:var(--teal);color:var(--teal)}.btn.p.on{color:#fff}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.sl{margin:10px 0}.sl label{display:flex;justify-content:space-between;font-weight:600;font-size:13px}input[type=range]{width:100%;accent-color:var(--teal)}
+select{font:600 13px Manrope,sans-serif;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+#chat{height:430px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:4px}
+.m{max-width:88%;padding:10px 13px;border-radius:12px}.m.u{align-self:flex-end;background:var(--teal);color:#fff}.m.a{align-self:flex-start;background:var(--bg);border:1px solid var(--line)}
+.st{font-size:12px;color:var(--mute);margin:2px 0}.st:before{content:"✓ ";color:var(--teal);font-weight:800}
+.bar{height:10px;border-radius:6px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%}
+.pl{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.ask{display:flex;gap:8px;margin-top:10px}.ask input{flex:1;padding:10px 14px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:13px Manrope,sans-serif}
+small.n{color:var(--mute);display:block;margin-top:10px;font-size:11px}
+@media (max-width:600px){main,header{padding-left:14px;padding-right:14px}.c2{grid-template-columns:1fr}}
+</style></head><body>
+<header><h1>Workforce Intelligence Agent</h1><p>Skill supply vs project demand · 24 employees · 8 skills · 8-week horizon (assumed data)</p>
+<nav id="nav"></nav></header><main id="app"></main>
+<script>
+const S=['Cloud','ML/AI','Cybersecurity','DevOps','Data Eng','Backend','UI/UX','Project Mgmt'],SH=['Cloud','ML/AI','Sec','DevOps','Data','Backend','UI/UX','PM'],W=8;
+const N=['Aarav Mehta','Isha Reddy','Rohan Iyer','Sneha Kulkarni','Vikram Rao','Ananya Das','Karthik Nair','Pooja Shah','Arjun Verma','Neha Gupta','Rahul Menon','Divya Pillai','Siddharth Jain','Meera Bose','Aditya Singh','Kavya Rao','Manish Patel','Riya Kapoor','Harsh Vyas','Tanvi Joshi','Nikhil Sen','Priya Nambiar','Gaurav Malik','Shreya Ghosh'];
+const prim=[0,0,0,1,1,2,2,3,3,3,4,4,4,4,5,5,5,5,6,6,6,7,7,7];
+const dem=[[5,5,6,6,6,6,5,5],[3,3,4,4,5,5,5,4],[3,4,4,4,5,5,4,4],[3,3,3,3,3,3,3,3],[3,3,3,3,3,3,3,3],[4,4,4,4,4,4,4,4],[1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5],[1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5]];
+const wt=[1.3,1.2,1.3,1,.9,1,.7,.8],cost={re:.4,tr:1.2,hi:[10,14,12,9,9,8,7,7]},EXP=1.1;
+const aff=[[0,1,2,3,0,2,0,0],[1,0,1,1,3,2,0,0],[2,0,0,3,0,1,0,0],[3,1,2,0,1,2,0,0],[2,3,1,1,0,3,0,0],[3,1,1,2,2,0,1,0],[2,1,1,0,1,1,0,2],[0,1,1,0,1,0,1,0]];
+let sd=7;const rnd=()=>{sd|=0;sd=sd+0x6D2B79F5|0;let t=Math.imul(sd^sd>>>15,1|sd);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+const P=prim.map((p,e)=>S.map((_,s)=>{if(s==p)return rnd()<.4?5:4;const r=rnd();return Math.max(0,Math.min(4,aff[p][s]+(r<.2?-1:r>.78?1:0)))}));
+const av=N.map(()=>Array(W).fill(1));[[1,2,0],[1,3,0],[3,5,.5],[5,4,0],[0,6,.5],[12,1,.5],[19,4,.5],[9,7,0]].forEach(([e,w,v])=>av[e][w]=v);
+const base=S.map((_,s)=>Array.from({length:W},(_,w)=>prim.reduce((a,p,e)=>a+(p==s?av[e][w]:0),0)));
+let cfg={re:3,tr:4,lead:4,tw:3},tab='Overview',skill=0,hl=-1,hist=[];
+const sum=a=>a.reduce((x,y)=>x+y,0),mean=a=>sum(a)/a.length,f1=x=>x.toFixed(1);
+const unmet=sup=>sup.map((r,s)=>sum(r.map((v,w)=>Math.max(0,dem[s][w]-v))));
+const risk=sup=>{let u=0;sup.forEach((r,s)=>r.forEach((v,w)=>u+=wt[s]*Math.max(0,dem[s][w]-v)/dem[s][w]));return 100*(1-Math.exp(-3*u/(W*sum(wt))))};
+const shortW=sup=>Array.from({length:W},(_,w)=>sum(sup.map((r,s)=>Math.max(0,dem[s][w]-r[w]))));
+function calc(c){const sup=base.map(r=>r.slice()),mv=[],tr=[],hi=[],used=new Set();
+ const gap=(s,f=0)=>{let m=0;for(let w=f;w<W;w++)m=Math.max(m,dem[s][w]-sup[s][w]);return m};
+ const sur=s=>mean(sup[s].map((v,w)=>v-dem[s][w]));
+ const order=[...S.keys()].sort((a,b)=>unmet(base)[b]-unmet(base)[a]).filter(s=>gap(s)>.4);
+ const pick=(s,lo,hi)=>[...N.keys()].filter(e=>!used.has(e)&&prim[e]!=s&&P[e][s]>=lo&&P[e][s]<=hi&&sur(prim[e])>=.9&&gap(prim[e])<=.4).sort((a,b)=>P[b][s]-P[a][s]||sum(av[b])-sum(av[a]))[0];
+ order.forEach(s=>{let e;while(mv.length<c.re&&gap(s)>.5&&(e=pick(s,3,5))!=null){used.add(e);for(let w=0;w<W;w++){sup[prim[e]][w]-=av[e][w];sup[s][w]+=av[e][w]}mv.push({e,from:prim[e],to:s,p:P[e][s]})}});
+ order.forEach(s=>{let e;while(tr.length<c.tr&&gap(s,c.tw)>.5&&(e=pick(s,2,2))!=null){used.add(e);for(let w=c.tw;w<W;w++){sup[prim[e]][w]-=av[e][w];sup[s][w]+=av[e][w]}tr.push({e,from:prim[e],to:s,p:2,ready:c.tw+1})}});
+ S.forEach((_,s)=>{const n=Math.ceil(gap(s,c.lead)-.25);if(n>0){for(let w=c.lead;w<W;w++)sup[s][w]+=n;hi.push({s,n})}});
+ const c$=mv.length*cost.re+tr.length*cost.tr+sum(hi.map(h=>h.n*cost.hi[h.s]));
+ return{sup,mv,tr,hi,cost:c$,r0:risk(base),r1:risk(sup),u0:sum(unmet(base)),u1:sum(unmet(sup))}}
+const cands=(s,lo,hi)=>[...N.keys()].filter(e=>prim[e]!=s&&P[e][s]>=lo&&P[e][s]<=hi).map(e=>({e,sur:mean(base[prim[e]].map((v,w)=>v-dem[prim[e]][w]))})).sort((a,b)=>P[b.e][s]-P[a.e][s]||b.sur-a.sur);
+function bars(lab,ser,col,h=250){const w=640,pl=28,pb=30,pt=8,mx=Math.max(...ser.flat(),1)*1.15,n=lab.length,gw=(w-pl)/n,bw=Math.min(24,(gw-8)/ser.length);let g='';
+ for(let i=0;i<=4;i++){const y=pt+(h-pt-pb)*(1-i/4);g+=`<line x1="${pl}" x2="${w}" y1="${y}" y2="${y}" class="gl"/><text x="${pl-5}" y="${y+3}" class="ax" text-anchor="end">${(mx*i/4).toFixed(0)}</text>`}
+ lab.forEach((l,i)=>{ser.forEach((s,k)=>{const bh=(h-pt-pb)*s[i]/mx;g+=`<rect x="${pl+gw*i+(gw-bw*ser.length)/2+k*bw}" y="${h-pb-bh}" width="${bw-2}" height="${bh}" rx="3" fill="${col[k]}"><title>${l}: ${f1(s[i])}</title></rect>`});g+=`<text x="${pl+gw*i+gw/2}" y="${h-pb+16}" class="ax" text-anchor="middle">${l}</text>`});return`<svg viewBox="0 0 ${w} ${h}">${g}</svg>`}
+function lines(lab,ser,h=250){const w=640,pl=28,pb=30,pt=8,mx=Math.max(...ser.flatMap(s=>s.v),1)*1.2,x=i=>pl+(w-pl-14)*i/(lab.length-1),y=v=>pt+(h-pt-pb)*(1-v/mx);let g='';
+ for(let i=0;i<=4;i++){const yy=pt+(h-pt-pb)*(1-i/4);g+=`<line x1="${pl}" x2="${w}" y1="${yy}" y2="${yy}" class="gl"/><text x="${pl-5}" y="${yy+3}" class="ax" text-anchor="end">${(mx*i/4).toFixed(0)}</text>`}
+ lab.forEach((l,i)=>g+=`<text x="${x(i)}" y="${h-10}" class="ax" text-anchor="middle">${l}</text>`);
+ ser.forEach(s=>{g+=`<polyline fill="none" stroke="${s.c}" stroke-width="3" ${s.d?'stroke-dasharray="6 5"':''} points="${s.v.map((v,i)=>x(i)+','+y(v)).join(' ')}"/>`+s.v.map((v,i)=>`<circle cx="${x(i)}" cy="${y(v)}" r="3.5" fill="${s.c}"><title>${f1(v)}</title></circle>`).join('')});return`<svg viewBox="0 0 ${w} ${h}">${g}</svg>`}
+const wk=Array.from({length:W},(_,i)=>'W'+(i+1)),lg=(a)=>`<div class="lg">${a.map(([c,t])=>`<span><i style="background:${c}"></i>${t}</span>`).join('')}</div>`;
+const sl=(k,l,mn,mx,u)=>`<div class="sl"><label>${l}<span>${cfg[k]}${u||''}</span></label><input type="range" min="${mn}" max="${mx}" value="${cfg[k]}" data-k="${k}"></div>`;
+const status=s=>{const g=unmet(base)[s];return g>3?'<span class="tag t-r">Critical</span>':g>0?'<span class="tag t-a">Watch</span>':'<span class="tag t-g">Surplus</span>'};
+const V={
+Overview(){const r=calc(cfg),a=base.map(mean),d=dem.map(mean),crit=S.filter((_,s)=>unmet(base)[s]>3).length;
+ return`<div class="grid k4"><div class="card kpi"><b>24</b><span>Employees on paper · 8 skills</span></div><div class="card kpi r"><b>${crit}</b><span>Critical skill gaps (Cloud, ML/AI, Security)</span></div><div class="card kpi a"><b>${f1(r.u0)}</b><span>Unmet FTE-weeks · exposure ₹${f1(r.u0*EXP)} L</span></div><div class="card kpi b"><b>${Math.round(r.r0)} → ${Math.round(r.r1)}</b><span>Delivery risk index, before → after plan</span></div></div>
+ <div class="grid c2" style="margin-top:16px"><div class="card"><h3>Supply vs demand by skill</h3><p class="sub">Average FTE over 8 weeks</p>${bars(SH,[d,a],['#e4572e','#0f9d8a'])}${lg([['#e4572e','Demand'],['#0f9d8a','Supply']])}</div>
+ <div class="card"><h3>Weekly shortfall</h3><p class="sub">Total FTE short, before vs after the agent’s plan</p>${bars(wk,[shortW(base),shortW(r.sup)],['#e4572e','#3a6ea5'])}${lg([['#e4572e','Before'],['#3a6ea5','After plan']])}</div></div>
+ <div class="card" style="margin-top:16px"><h3>Skill health</h3><div class="tw"><table><tr><th>Skill</th><th>Avg demand</th><th>Avg supply</th><th>Peak gap</th><th>Unmet FTE-weeks</th><th>Status</th></tr>${S.map((n,s)=>`<tr><td><b>${n}</b></td><td>${f1(d[s])}</td><td>${f1(a[s])}</td><td>${f1(Math.max(...dem[s].map((x,w)=>x-base[s][w])))}</td><td>${f1(unmet(base)[s])}</td><td>${status(s)}</td></tr>`).join('')}</table></div>
+ <small class="n">Risk index = 100 × (1 − e^(−3 × weighted unmet demand share)). Exposure assumes ₹${EXP} L per unmet FTE-week. All data is assumed.</small></div>`},
+Matrix(){return`<div class="card"><div class="row"><div><h3>Skill matrix</h3><p class="sub">Proficiency 0–5. Skills at 3 or above count as deployable.</p></div><span style="flex:1"></span><select id="hl"><option value="-1">Highlight a skill…</option>${S.map((s,i)=>`<option value="${i}" ${hl==i?'selected':''}>${s}</option>`).join('')}</select></div>
+ <div class="tw"><table><tr><th>Employee</th><th>Home</th>${SH.map((s,i)=>`<th style="text-align:center;${hl==i?'color:var(--teal)':''}">${s}</th>`).join('')}</tr>
+ ${N.map((n,e)=>`<tr><td>${n}</td><td><span class="tag t-g">${SH[prim[e]]}</span></td>${P[e].map((p,s)=>`<td class="h" style="background:rgba(15,157,138,${p/5*.85});color:${p>=4?'#fff':'var(--ink)'};${hl>=0&&hl!=s?'opacity:.3':''}${hl==s&&p>=3&&prim[e]!=s?';outline:2px solid var(--amber)':''}">${p}</td>`).join('')}</tr>`).join('')}
+ <tr><th>Deployable (≥3)</th><th></th>${S.map((_,s)=>`<th style="text-align:center">${P.filter(r=>r[s]>=3).length}</th>`).join('')}</tr><tr><th>Avg demand (FTE)</th><th></th>${S.map((_,s)=>`<th style="text-align:center">${f1(mean(dem[s]))}</th>`).join('')}</tr></table></div>
+ <small class="n">Amber outline: people from other teams already at 3+ in the highlighted skill, i.e. reallocation candidates.</small></div>`},
+Gaps(){const r=calc(cfg),s=skill;
+ return`<div class="row" style="margin-bottom:14px">${S.map((n,i)=>`<button class="btn ${i==s?'p on':''}" data-sk="${i}">${n}</button>`).join('')}</div>
+ <div class="grid c2"><div class="card"><h3>${S[s]}: demand vs supply</h3><p class="sub">Weekly FTE. Dashed line shows supply after the plan.</p>${lines(wk,[{v:dem[s],c:'#e4572e'},{v:base[s],c:'#0f9d8a'},{v:r.sup[s],c:'#3a6ea5',d:1}])}${lg([['#e4572e','Demand'],['#0f9d8a','Current supply'],['#3a6ea5','After plan']])}
+ <div class="tw"><table><tr><th>Week</th>${wk.map(w=>`<th>${w}</th>`).join('')}</tr><tr><td>Gap now</td>${base[s].map((v,w)=>{const g=dem[s][w]-v;return`<td style="color:${g>.4?'var(--coral)':'var(--teal)'};font-weight:700">${g>0?'-'+f1(g):'+'+f1(-g)}</td>`}).join('')}</tr><tr><td>Gap after</td>${r.sup[s].map((v,w)=>{const g=dem[s][w]-v;return`<td style="font-weight:700;color:${g>.4?'var(--coral)':'var(--teal)'}">${g>0?'-'+f1(g):'+'+f1(-g)}</td>`}).join('')}</tr></table></div></div>
+ <div class="card"><h3>What-if levers</h3><p class="sub">The agent re-plans live as you move these.</p>${sl('re','Max reallocations',0,5)}${sl('tr','Max people to upskill',0,8)}${sl('tw','Training duration',1,6,' wk')}${sl('lead','Hiring lead time',2,8,' wk')}
+ <div class="pl"><span>Risk index</span><b>${Math.round(r.r0)} → ${Math.round(r.r1)}</b></div><div class="pl"><span>Moves / trains / hires</span><b>${r.mv.length} / ${r.tr.length} / ${sum(r.hi.map(h=>h.n))}</b></div><div class="pl"><span>Plan cost</span><b>₹${f1(r.cost)} L</b></div></div></div>`},
+Agent(){return`<div class="grid c2" style="grid-template-columns:2fr 1fr"><div class="card"><h3>Planning agent</h3><p class="sub">Ask in plain language. It shows each reasoning step before answering.</p><div id="chat"></div>
+ <div class="row" style="margin-top:10px">${['Who can be upskilled in Cloud?','Should we hire or train?','Run the optimal plan','Who can we reallocate?','Which gaps are most critical?'].map(q=>`<button class="chip" data-q="${q}">${q}</button>`).join('')}</div>
+ <form class="ask" id="f" onsubmit="return false"><input id="q" placeholder="e.g. What does the plan cost?" autocomplete="off"><button class="btn p" id="go">Ask</button></form></div>
+ <div class="card"><h3>How the agent decides</h3><p class="sub">Priority order, cheapest and fastest first</p>
+ <div class="pl"><span><b>1 Reallocate</b><br>Staff at 3+ from teams with surplus. Live in week 1, ₹${cost.re} L.</span></div><div class="pl"><span><b>2 Upskill</b><br>Staff at 2 from surplus teams. Ready after training, ₹${cost.tr} L.</span></div><div class="pl"><span><b>3 Hire</b><br>Only the remaining gap, after lead time. ₹${cost.hi[0]}–${cost.hi[1]} L each.</span></div>
+ <small class="n">Tools used: skill matrix lookup, weekly gap calculator, risk index, cost model.</small></div></div>`},
+Plan(){const r=calc(cfg),nm=e=>N[e],hc=sum(r.hi.map(h=>h.n));
+ return`<div class="grid k4"><div class="card kpi"><b>₹${f1(r.cost)} L</b><span>Total plan cost</span></div><div class="card kpi b"><b>${r.mv.length} · ${r.tr.length} · ${hc}</b><span>Reallocate · upskill · hire</span></div><div class="card kpi r"><b>${Math.round(r.r0)}</b><span>Risk before</span></div><div class="card kpi"><b>${Math.round(r.r1)}</b><span>Risk after · saves ₹${f1((r.u0-r.u1)*EXP)} L exposure</span></div></div>
+ <div class="grid c2" style="margin-top:16px"><div class="card"><h3>Step 1 · Reallocate (week 1)</h3>${r.mv.map(m=>`<div class="pl"><span><b>${nm(m.e)}</b><br><span class="sub">${S[m.from]} → ${S[m.to]} · proficiency ${m.p}</span></span><span class="tag t-g">₹${cost.re} L</span></div>`).join('')||'<p class="sub">No reallocation needed or allowed.</p>'}
+ <h3 style="margin-top:14px">Step 2 · Upskill</h3>${r.tr.map(m=>`<div class="pl"><span><b>${nm(m.e)}</b><br><span class="sub">${S[m.from]} → ${S[m.to]} · ready week ${m.ready}</span></span><span class="tag t-a">₹${cost.tr} L</span></div>`).join('')||'<p class="sub">No upskilling in this scenario.</p>'}
+ <h3 style="margin-top:14px">Step 3 · Hire</h3>${r.hi.map(h=>`<div class="pl"><span><b>${h.n} × ${S[h.s]} specialist</b><br><span class="sub">Starts week ${cfg.lead+1}</span></span><span class="tag t-r">₹${h.n*cost.hi[h.s]} L</span></div>`).join('')||'<p class="sub">No hiring needed.</p>'}</div>
+ <div class="card"><h3>Risk by skill: before vs after</h3><p class="sub">Unmet FTE-weeks</p>${bars(SH,[unmet(base),unmet(r.sup)],['#e4572e','#0f9d8a'],230)}${lg([['#e4572e','Before'],['#0f9d8a','After']])}
+ <small class="n">Any gap left in the first ${cfg.lead} weeks is hiring lead-time risk. Shorten it with more reallocation or training, or use contractors as a stopgap.</small></div></div>`}};
+const TABS=[['Overview','Overview'],['Matrix','Skill matrix'],['Gaps','Gap analysis'],['Agent','AI agent'],['Plan','Action plan']];
+function draw(){$nav.innerHTML=TABS.map(([k,l])=>`<button class="${k==tab?'on':''}" data-t="${k}">${l}</button>`).join('');app.innerHTML=V[tab]();if(tab=='Agent'){hist.forEach(h=>add(h[0],h[1],true));if(!hist.length)say('Hi, I’m your workforce planning agent. I read the skill matrix, compare it with weekly demand and recommend moves, training and hires. Pick a question below or type your own.')}}
+const $nav=document.getElementById('nav'),app=document.getElementById('app');
+function add(c,h,q){const d=document.createElement('div');d.className='m '+c;d.innerHTML=h;const ch=document.getElementById('chat');ch.appendChild(d);ch.scrollTop=1e9;if(!q)hist.push([c,h])}
+function say(h){add('a',h)}
+const find=t=>{t=t.toLowerCase();return/cloud/.test(t)?0:/ml|\bai\b|machine/.test(t)?1:/secur|cyber/.test(t)?2:/devops/.test(t)?3:/data/.test(t)?4:/backend/.test(t)?5:/ui|ux|design/.test(t)?6:/project|\bpm\b/.test(t)?7:-1};
+function think(steps,out){const box=document.createElement('div');box.className='m a';document.getElementById('chat').appendChild(box);let i=0;(function n(){if(i<steps.length){box.innerHTML+=`<div class="st">${steps[i++]}</div>`;document.getElementById('chat').scrollTop=1e9;setTimeout(n,420)}else{box.remove();add('a',steps.map(s=>`<div class="st">${s}</div>`).join('')+'<hr style="border:0;border-top:1px solid var(--line)">'+out)}})()}
+const li=a=>a.map(x=>`• ${x}`).join('<br>');
+function ask(t){add('u',t);const s=find(t),l=t.toLowerCase(),r=calc(cfg),g=unmet(base);
+ if(/optimal|run .*plan|best plan/.test(l)){cfg={re:3,tr:4,lead:4,tw:3};const p=calc(cfg);return think(['Computing supply minus demand for 8 skills × 8 weeks','Ranking skills by unmet FTE-weeks','Reallocating surplus staff with proficiency ≥ 3','Upskilling adjacent staff (proficiency 2)','Sizing hires for the remaining gap after lead time','Costing the plan and re-scoring delivery risk'],`Risk falls from <b>${Math.round(p.r0)}</b> to <b>${Math.round(p.r1)}</b> for <b>₹${f1(p.cost)} L</b>: ${p.mv.length} reallocation(s), ${p.tr.length} upskill(s) and ${sum(p.hi.map(h=>h.n))} hire(s). <button class="chip" data-t="Plan">Open action plan</button>`)}
+ if(/upskill|train|learn/.test(l)&&s>=0&&!/hire/.test(l)){const c=cands(s,2,2).slice(0,5);return think([`Reading proficiency in ${S[s]} for all 24 people`,'Filtering adjacent skill (proficiency 2)','Checking surplus in each home team','Ranking by availability'],c.length?`Best ${S[s]} upskilling candidates:<br>${li(c.map(x=>`<b>${N[x.e]}</b> (${S[prim[x.e]]}, prof 2, team surplus ${f1(Math.max(0,x.sur))} FTE)`))}<br>Ready in ~${cfg.tw} weeks.`:`Nobody sits at proficiency 2 in ${S[s]}. Hiring is the realistic route.`)}
+ if(/hire|train/.test(l)){const top=[...S.keys()].filter(x=>g[x]>3);return think(['Finding skills with sustained gaps','Counting deployable and trainable staff per skill','Comparing time-to-fill: reallocate 0 wk, train '+cfg.tw+' wk, hire '+cfg.lead+' wk','Applying rule: reallocate, then train, then hire'],`Recommendation:<br>${li(top.map(x=>{const rl=cands(x,3,5).filter(c=>c.sur>=.9).length,up=cands(x,2,2).filter(c=>c.sur>=.9).length;return`<b>${S[x]}</b>: ${rl} movable, ${up} trainable → ${rl?'move first, ':''}${up?'train next, ':''}hire the rest`}))}<br>Train for steady gaps. Hire where nobody can be developed in time.`)}
+ if(/realloc|move|surplus|free|idle/.test(l)){const sp=[...S.keys()].filter(x=>g[x]==0&&mean(base[x].map((v,w)=>v-dem[x][w]))>=.9);return think(['Finding teams with surplus capacity','Matching their skills to short skills'],`Surplus teams: ${sp.map(x=>`<b>${S[x]}</b> (+${f1(mean(base[x].map((v,w)=>v-dem[x][w])))} FTE)`).join(', ')}.<br>Ready to move:<br>${li(r.mv.map(m=>`<b>${N[m.e]}</b>: ${S[m.from]} → ${S[m.to]} (prof ${m.p})`))||'None'}`)}
+ if(/cost|budget|₹|rupee/.test(l))return think(['Pricing each action','Summing plan cost vs exposure'],`Plan cost <b>₹${f1(r.cost)} L</b> against exposure of <b>₹${f1(r.u0*EXP)} L</b> if nothing changes. Reallocation ₹${cost.re} L, training ₹${cost.tr} L, hires ₹${cost.hi[4]}–${cost.hi[1]} L each.`);
+ if(/gap|critical|risk|short|worst/.test(l)||s>=0){const o=[...S.keys()].sort((a,b)=>g[b]-g[a]).slice(0,s>=0?1:3);return think(['Calculating weekly shortfall','Weighting by skill criticality'],li(o.map(x=>{const w=dem[x].map((d,i)=>d-base[x][i]);return`<b>${S[x]}</b>: unmet ${f1(g[x])} FTE-weeks, peak gap ${f1(Math.max(...w))} in W${w.indexOf(Math.max(...w))+1}`})))}
+ say('I can help with upskilling candidates, hire vs train, reallocation, gaps, cost, or run the optimal plan. Try “Who can be upskilled in ML?”.')}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-t],[data-sk],[data-q]');if(!t)return;if(t.dataset.t){tab=t.dataset.t;draw()}else if(t.dataset.sk){skill=+t.dataset.sk;draw()}else if(t.dataset.q)ask(t.dataset.q);else if(t.id=='go'){}});
+document.addEventListener('input',e=>{if(e.target.dataset.k){cfg[e.target.dataset.k]=+e.target.value;const y=scrollY;draw();scrollTo(0,y)}});
+document.addEventListener('change',e=>{if(e.target.id=='hl'){hl=+e.target.value;draw()}});
+document.addEventListener('submit',e=>{e.preventDefault()});
+document.addEventListener('click',e=>{if(e.target.id=='go'){const q=document.getElementById('q');if(q.value.trim()){ask(q.value);q.value=''}}});
+draw();
+</script></body></html>
